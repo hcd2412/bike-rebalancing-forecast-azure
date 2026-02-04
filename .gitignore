@@ -6,3 +6,4 @@ data/raw/
 data/interim/
 data/processed/
 *.log
+!data/raw/README.md
