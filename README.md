@@ -1,6 +1,8 @@
 # Bike Rebalancing Forecast (Azure)
 
-Senior Data Scientist portfolio project that combines **forecasting (predictive)** and **rebalancing optimization (prescriptive)**, deployed as a lightweight API on **Azure Container Apps**.
+Portfolio project demonstrating **senior-level predictive and prescriptive analytics**, deployed as a lightweight API on **Azure Container Apps**.
+
+The project emphasizes **end-to-end system design**, from data aggregation and demand modeling to optimization-driven decision making and cloud deployment.
 
 ## What this project does
 1) **Aggregate demand** from Citi Bike trip data into **station × hour** demand signals  
