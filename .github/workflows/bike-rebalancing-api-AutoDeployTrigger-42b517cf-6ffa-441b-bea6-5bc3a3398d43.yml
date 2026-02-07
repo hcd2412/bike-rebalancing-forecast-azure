@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout to the branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Azure Login
         uses: azure/login@v2
@@ -31,19 +31,21 @@ jobs:
           tenant-id: ${{ secrets.BIKEREBALANCINGAPI_AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.BIKEREBALANCINGAPI_AZURE_SUBSCRIPTION_ID }}
 
-      - name: Build and push container image to registry
+      - name: Build and deploy to Azure Container Apps
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: ${{ github.workspace }}
-          _dockerfilePathKey_: _dockerfilePath_
-          _targetLabelKey_: _targetLabel_
-          registryUrl: 
-          registryUsername: ${{ secrets.BIKEREBALANCINGAPI_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.BIKEREBALANCINGAPI_REGISTRY_PASSWORD }}
+          dockerfilePath: Dockerfile
+
           containerAppName: bike-rebalancing-api
           resourceGroup: bike-rebalancing-rg
-          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
+
+          registryUrl: ${{ secrets.BIKEREBALANCINGAPI_REGISTRY_URL }}
+          registryUsername: ${{ secrets.BIKEREBALANCINGAPI_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.BIKEREBALANCINGAPI_REGISTRY_PASSWORD }}
+
+          imageToBuild: ${{ secrets.BIKEREBALANCINGAPI_REGISTRY_URL }}/bike-rebalancing-api:${{ github.sha }}
+          targetPort: 8000
+
 
 
