@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List, Dict
 import pandas as pd
 
 from src.rebalancing_optimizer import recommend_rebalancing
@@ -11,8 +13,13 @@ def health():
     return {"status": "ok"}
 
 
+class RebalanceRequest(BaseModel):
+    demand_forecast: List[Dict]
+    current_inventory: List[Dict]
+
+
 @app.post("/rebalance")
-def rebalance(payload: dict):
+def rebalance(payload: RebalanceRequest):
     """
     Expected payload:
     {
@@ -20,8 +27,8 @@ def rebalance(payload: dict):
         "current_inventory": [...]
     }
     """
-    demand_forecast = pd.DataFrame(payload["demand_forecast"])
-    current_inventory = pd.DataFrame(payload["current_inventory"])
+    demand_forecast = pd.DataFrame(payload.demand_forecast)
+    current_inventory = pd.DataFrame(payload.current_inventory)
 
     recs = recommend_rebalancing(demand_forecast, current_inventory)
 
