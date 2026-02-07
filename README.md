@@ -74,6 +74,7 @@ and public-sector infrastructure.
                          └────────────────────────────────┘
 
 ```
+*This architecture separates analytics, forecasting, and decision logic to ensure explainable, constraint-governed operational decisions.*
 
 
 ## Dataset
