@@ -25,19 +25,20 @@ The project emphasizes **end-to-end system design**, from data aggregation and d
                   │  → station_id × hour_ts → ride_count      │
                   └─────────────────────────┬─────────────────┘
                                             │
-                                            ├───────────────┐
-                                            │               │
-                                            ▼               ▼
-        ┌───────────────────────────┐   ┌────────────────────────────┐
-        │  Demand Modeling Notebook │   │   Rebalancing Optimizer    │
-        │  notebooks/02_...ipynb    │   │   src/rebalancing_optimizer│
-        │  Features: hour, dow      │   │   OR-Tools                 │
-        │  Output: predicted_demand │   │   Output: move plan        │
-        └───────────────┬───────────┘   └───────────────┬────────────┘
-                        │                               │
-                        └───────────────┬───────────────┘
-                                        │
-                                        ▼
+                  ┌─────────────────────────┴─────────────────┐
+                  │                                           │
+                  ▼                                           ▼
+        ┌───────────────────────────┐   ┌────────────────────────────────────┐
+        │  Demand Modeling Notebook │   │         Rebalancing Optimizer      │
+        │  notebooks/02_...ipynb    │   │   src/rebalancing_optimizer.py     │
+        │  Features: hour, dow      │   │   Inputs:                          │
+        │  Output: predicted_demand │   │     - predicted_demand (forecast)  │
+        └───────────────┬───────────┘   │     - current_inventory (state)    │
+                        │               │   OR-Tools / constrained decision  │
+                        └──────────────▶│   Output: move plan                │
+                                        └───────────┬────────────────────────┘
+                                                    │
+                                                    ▼
                          ┌────────────────────────────────┐
                          │         FastAPI Service        │
                          │         src/api.py             │
@@ -51,6 +52,7 @@ The project emphasizes **end-to-end system design**, from data aggregation and d
                          │   (build from GitHub repo)     │
                          │   Public ingress (HTTP)        │
                          └────────────────────────────────┘
+
 ```
 
 
