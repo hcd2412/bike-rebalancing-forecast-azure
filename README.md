@@ -14,42 +14,42 @@ The project emphasizes **end-to-end system design**, from data aggregation and d
 
 ```text
                   ┌───────────────────────────────────────────┐
-                  │        NYC Citi Bike Trip Data (CSV)       │
-                  │   data/raw/202406-..._1..5.csv (ignored)   │
+                  │        NYC Citi Bike Trip Data (CSV)      │
+                  │   data/raw/202406-..._1..5.csv (ignored)  │
                   └─────────────────────────┬─────────────────┘
                                             │
                                             ▼
                   ┌───────────────────────────────────────────┐
-                  │      Data Aggregation (Python/Pandas)      │
-                  │  src/data_aggregation.py                   │
-                  │  → station_id × hour_ts → ride_count       │
+                  │      Data Aggregation (Python/Pandas)     │
+                  │  src/data_aggregation.py                  │
+                  │  → station_id × hour_ts → ride_count      │
                   └─────────────────────────┬─────────────────┘
                                             │
                                             ├───────────────┐
                                             │               │
                                             ▼               ▼
-        ┌───────────────────────────┐   ┌───────────────────────────┐
-        │  Demand Modeling Notebook  │   │   Rebalancing Optimizer    │
-        │  notebooks/02_...ipynb     │   │   src/rebalancing_optimizer│
-        │  Features: hour, dow       │   │   OR-Tools                 │
-        │  Output: predicted_demand  │   │   Output: move plan        │
-        └───────────────┬───────────┘   └───────────────┬───────────┘
+        ┌───────────────────────────┐   ┌────────────────────────────┐
+        │  Demand Modeling Notebook │   │   Rebalancing Optimizer    │
+        │  notebooks/02_...ipynb    │   │   src/rebalancing_optimizer│
+        │  Features: hour, dow      │   │   OR-Tools                 │
+        │  Output: predicted_demand │   │   Output: move plan        │
+        └───────────────┬───────────┘   └───────────────┬────────────┘
                         │                               │
                         └───────────────┬───────────────┘
                                         │
                                         ▼
                          ┌────────────────────────────────┐
-                         │         FastAPI Service         │
-                         │         src/api.py              │
-                         │  GET  /  → {"status":"ok"}      │
-                         │  POST /rebalance → move plan    │
+                         │         FastAPI Service        │
+                         │         src/api.py             │
+                         │  GET  /  → {"status":"ok"}     │
+                         │  POST /rebalance → move plan   │
                          └────────────────┬───────────────┘
                                           │
                                           ▼
                          ┌────────────────────────────────┐
-                         │      Azure Container Apps       │
-                         │   (build from GitHub repo)      │
-                         │   Public ingress (HTTP)         │
+                         │      Azure Container Apps      │
+                         │   (build from GitHub repo)     │
+                         │   Public ingress (HTTP)        │
                          └────────────────────────────────┘
 ```
 
