@@ -1,5 +1,11 @@
 # Bike Rebalancing Forecast (Azure)
 
+## Live Demo
+
+- API base: https://bike-rebalancing-api.braveground-cb6072c0.canadacentral.azurecontainerapps.io/
+- Swagger UI: https://bike-rebalancing-api.braveground-cb6072c0.canadacentral.azurecontainerapps.io/docs
+- Health check: https://bike-rebalancing-api.braveground-cb6072c0.canadacentral.azurecontainerapps.io/
+
 Portfolio project demonstrating **senior-level predictive and prescriptive analytics**, deployed as a lightweight API on **Azure Container Apps**.
 
 The project emphasizes **end-to-end system design**, from data aggregation and demand modeling to optimization-driven decision making and cloud deployment.
