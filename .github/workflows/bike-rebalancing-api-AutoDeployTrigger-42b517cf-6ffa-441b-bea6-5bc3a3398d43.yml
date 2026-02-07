@@ -6,9 +6,8 @@ on:
   push:
     branches: 
       [ main ]
-    paths:
-    - '**'
-    - '.github/workflows/bike-rebalancing-api-AutoDeployTrigger-42b517cf-6ffa-441b-bea6-5bc3a3398d43.yml'
+    paths-ignore:
+    - '**/*.md'
 
   # Allow manual trigger 
   workflow_dispatch:      
@@ -46,6 +45,7 @@ jobs:
 
           imageToBuild: ${{ secrets.BIKEREBALANCINGAPI_REGISTRY_URL }}/bike-rebalancing-api:${{ github.sha }}
           targetPort: 8000
+
 
 
 
