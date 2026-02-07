@@ -96,6 +96,17 @@ curl -X POST http://127.0.0.1:8000/rebalance \
   }'
 ```
 
+## Design Patterns
+
+This system implements the **Surplus–Deficit Balancing** decision pattern,
+documented in the companion repository:
+
+- https://github.com/hcd2412/decision-systems-patterns/tree/main/patterns/01-surplus-deficit-balancing.md
+
+The API exposes a constrained, explainable decision surface rather than
+direct unconstrained optimization, allowing human review and safe
+operational deployment.
+
 ## Status
 
 * ✅ Data ingestion + hourly aggregation
