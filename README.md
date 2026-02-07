@@ -10,6 +10,20 @@ Portfolio project demonstrating **senior-level predictive and prescriptive analy
 
 The project emphasizes **end-to-end system design**, from data aggregation and demand modeling to optimization-driven decision making and cloud deployment.
 
+## Why This Matters
+
+Urban mobility systems fail not because of missing data, but because of
+poor decision logic under constraints.
+
+This project demonstrates how to:
+- translate noisy demand signals into **actionable decisions**
+- combine **forecasting + optimization + governance**
+- expose decisions through a **human-reviewable API**
+- deploy a decision system safely to the cloud
+
+The same design applies to logistics, energy, telecom, smart cities,
+and public-sector infrastructure.
+
 ## What this project does
 1) **Aggregate demand** from Citi Bike trip data into **station × hour** demand signals  
 2) Train a **baseline demand model** (hour-of-day / day-of-week features)  
@@ -22,16 +36,16 @@ The project emphasizes **end-to-end system design**, from data aggregation and d
                   ┌───────────────────────────────────────────┐
                   │        NYC Citi Bike Trip Data (CSV)      │
                   │   data/raw/202406-..._1..5.csv (ignored)  │
-                  └─────────────────────────┬─────────────────┘
-                                            │
-                                            ▼
+                  └─────────────────────┬─────────────────────┘
+                                        │
+                                        ▼
                   ┌───────────────────────────────────────────┐
                   │      Data Aggregation (Python/Pandas)     │
                   │  src/data_aggregation.py                  │
                   │  → station_id × hour_ts → ride_count      │
-                  └─────────────────────────┬─────────────────┘
-                                            │
-                  ┌─────────────────────────┴─────────────────┐
+                  └─────────────────────┬─────────────────────┘
+                                        │
+                  ┌─────────────────────┴─────────────────────┐
                   │                                           │
                   ▼                                           ▼
         ┌───────────────────────────┐   ┌────────────────────────────────────┐
